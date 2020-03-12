@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class Authentication {
 
     //Authentication Instance;
-    private Authentication authenticationInstance = null;
+    private static Authentication authenticationInstance = null;
 
     //Driver Hashmap;
     private HashMap<Integer, Driver> driversHash = new HashMap<Integer, Driver>();
@@ -21,11 +21,11 @@ public class Authentication {
      * This function will return the UNIQUE instance to ever be created on this project (UNIQUE/GLOBAL)
      * @return Authentication Class Instance
      */
-    public Authentication getAuthenticationInstance() {
-        if(this.authenticationInstance == null)
-            this.authenticationInstance = new Authentication();
+    public static Authentication getAuthenticationInstance() {
+        if(authenticationInstance == null)
+            authenticationInstance = new Authentication();
 
-        return this.authenticationInstance;
+        return authenticationInstance;
     }
 
     /**
@@ -43,9 +43,9 @@ public class Authentication {
      * This function will verify if the given argumments are stored on the Driver class
      * @param name
      * @param password
-     * @return
+     * @return if user valid then true, no user false
      */
-    public Boolean checkDriver(String name, String password) {
+    public boolean checkDriver(String name, String password) {
         for(Driver driver : this.driversHash.values()) {
             if((driver.getName() == name) && (driver.getPassword() == password))
                 return true;
