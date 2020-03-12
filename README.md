@@ -2,7 +2,7 @@
 This is the Software Engineering final project related to Design Patterns done in java.
 
 # Requirements:
-    - Global Authorization (Usernames/Passwords);
+    - Global Authentication (Usernames/Passwords);
     - Level Storing:
         - Containers (Group of Boxes);
         - Box (Vaccine/Bottle/Packing);
@@ -13,5 +13,5 @@ This is the Software Engineering final project related to Design Patterns done i
     - Reutilize the already created Containers and Boxes;
 
 # Solutions:
-    - Singleton (Authorization);
+    - Singleton (Authentication);
     - ...
