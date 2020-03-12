@@ -3,9 +3,9 @@ import authentication.Authentication;
 /**
  * main
  */
-public class Main {
+public class main {
 
-    public static void Main(String[] args) {
+    public static void main(String[] args) {
         
         //Authentication
         Authentication authenticationObject = Authentication.getAuthenticationInstance();
