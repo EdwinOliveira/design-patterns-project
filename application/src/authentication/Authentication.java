@@ -45,11 +45,13 @@ public class Authentication {
      * @param password
      * @return if user valid then true, no user false
      */
-    public boolean checkDriver(String name, String password) {
+    public void checkDriver(String name, String password) {
         for(Driver driver : this.driversHash.values()) {
-            if((driver.getName() == name) && (driver.getPassword() == password))
-                return true;
+            if((driver.getName() == name) && (driver.getPassword() == password)) {
+                System.out.println("User was found!");
+            } else {
+                System.out.println("User was not found!");
+            }
         }
-        return false;
     }
 }
