@@ -1,6 +1,8 @@
 import authentication.Authentication;
+import transport.Bottle;
 import transport.Box;
 import transport.Container;
+import transport.Package;
 import transport.Pill;
 
 /**
@@ -28,25 +30,18 @@ public class main {
     }
 
     public static void composite() {
-        //Creating a Container
-        Container container = new Container();
+        //Instantiating the Transport Sets;
+        Container firstContainer = new Box();
+        Container secondContainer = new Package();
+        Container thirdContainer = new Pill();
+        Container forthContainer = new Bottle();
 
-        //Creating Leafs(Sets of Transport)
-        Box box = new Box();
-        Pill pill = new Pill();
+        //Adding some sets to anothers;
+        firstContainer.addMedication(secondContainer);
+        secondContainer.addMedication(thirdContainer);
+        secondContainer.addMedication(forthContainer);
 
-        //Adding Sets of transport to the Container;
-        container.addMedication(box);
-        container.addMedication(pill);
-
-        //Creating a Container
-        Container container2 = new Container();
-        container2.addMedication(container);
-
-        //Showing all the Sets of Transport already created
-        container.showMedicationTransport();
-
-        //Showing all the Sets of Transport already created
-        container2.showMedicationTransport();
+        //Running all levels
+        firstContainer.transport();
     }
 }

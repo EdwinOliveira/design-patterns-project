@@ -3,12 +3,16 @@ package transport;
 /**
  * Box
  */
-public class Box implements Medication {
+public class Box extends Container implements Medication {
 
-    public Box() {}
+    public Box() {
+        super();
+    }
 
     @Override
     public void transport() {
-        System.out.println("This medication comes from a Box!");
-    };
+        System.out.println("Box");
+        super.transport();
+    }
+    
 }

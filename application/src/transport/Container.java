@@ -5,42 +5,31 @@ import java.util.ArrayList;
 /**
  * Container
  */
-public class Container implements Medication {
+public abstract class Container implements Medication {
 
-    //fields
-    private ArrayList<Medication> medications;
+    //medicationArrayList
+    private ArrayList<Medication> medicationArrayList = new ArrayList<Medication>();
 
-    //Constructor
-    public Container() {
-        this.medications = new ArrayList<Medication>();
+    public Container() {};
+
+    public void addMedication(Medication medication) {
+        if(medicationArrayList.contains(medication) == true)
+            return;
+        
+        medicationArrayList.add(medication);
     }
 
-    //Methods
+    public void removeMedication(Medication medication) {
+        if(medicationArrayList.contains(medication) == false)
+            return;
+    
+        medicationArrayList.remove(medication);
+    }
 
     @Override
     public void transport() {
-        // TODO Auto-generated method stub
-        System.out.println("This Medication comes from a Container");
-    };    
-
-    public void showMedicationTransport() {
-        for(Medication medication: medications) {
+        for(Medication medication: medicationArrayList) {
             medication.transport();
         }
-    }
-
-    public void addMedication(Medication Medication) {
-        if(this.medications.contains(Medication) == true)
-            return;
-
-        this.medications.add(Medication);
-
-    }
-
-    public void removeContainer(Medication Medication) {
-        if(this.medications.contains(Medication) == false)
-            return;
-
-        this.medications.remove(Medication);
     }
 }

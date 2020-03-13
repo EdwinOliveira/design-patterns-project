@@ -3,11 +3,16 @@ package transport;
 /**
  * Package
  */
-public class Package implements Medication {
-    public Package() {}
+public class Package extends Container {
+
+    public Package() {
+        super();
+    }
 
     @Override
     public void transport() {
-        System.out.println("This medication comes from a Package");
-    };
+        System.out.println("Package");
+        super.transport();
+    }
+        
 }

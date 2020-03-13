@@ -3,11 +3,16 @@ package transport;
 /**
  * Pill
  */
-public class Pill implements Medication {
-    public Pill() {}
+public class Pill extends Container {
+
+    public Pill() {
+        super();
+    };
 
     @Override
     public void transport() {
-        System.out.println("This medication comes from a Pill!");
-    };
+        // TODO Auto-generated method stub
+        System.out.println("Pill");
+        super.transport();
+    }    
 }
