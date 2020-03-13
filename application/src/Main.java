@@ -28,11 +28,25 @@ public class main {
     }
 
     public static void composite() {
+        //Creating a Container
+        Container container = new Container();
+
+        //Creating Leafs(Sets of Transport)
         Box box = new Box();
         Pill pill = new Pill();
-        Container container = new Container();
+
+        //Adding Sets of transport to the Container;
         container.addMedication(box);
         container.addMedication(pill);
+
+        //Creating a Container
+        Container container2 = new Container();
+        container2.addMedication(container);
+
+        //Showing all the Sets of Transport already created
         container.showMedicationTransport();
+
+        //Showing all the Sets of Transport already created
+        container2.showMedicationTransport();
     }
 }
