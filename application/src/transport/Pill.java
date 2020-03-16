@@ -5,9 +5,19 @@ package transport;
  */
 public class Pill extends Container {
 
-    public Pill() {
-        super();
+    //fields
+    private float price;
+
+    public Pill(PriceInterface priceInterface) {
+        super(priceInterface);
+        this.price = 25;
     };
+
+    @Override
+    public float price() {
+        this.price += super.price();
+        return this.price;
+    }
 
     @Override
     public void transport() {
@@ -15,4 +25,8 @@ public class Pill extends Container {
         System.out.println("Pill");
         super.transport();
     }    
+    @Override
+    public float applyTaxToPrice(float price) {
+        return priceInterface.applyTaxToPrice(price);
+    }
 }

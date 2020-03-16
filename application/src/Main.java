@@ -4,6 +4,7 @@ import transport.Box;
 import transport.Container;
 import transport.Package;
 import transport.Pill;
+import transport.SpecialPeriods;
 
 /**
  * main
@@ -31,10 +32,10 @@ public class main {
 
     public static void composite() {
         //Instantiating the Transport Sets;
-        Container firstContainer = new Box();
-        Container secondContainer = new Package();
-        Container thirdContainer = new Pill();
-        Container forthContainer = new Bottle();
+        Container firstContainer = new Box(new SpecialPeriods());
+        Container secondContainer = new Package(new SpecialPeriods());
+        Container thirdContainer = new Pill(new SpecialPeriods());
+        Container forthContainer = new Bottle(new SpecialPeriods());
 
         //Adding some sets to anothers;
         firstContainer.addMedication(secondContainer);
@@ -43,5 +44,9 @@ public class main {
 
         //Running all levels
         firstContainer.transport();
+        float price = firstContainer.price();
+
+        float value = firstContainer.applyTaxToPrice(price);
+        System.out.println(value);
     }
 }

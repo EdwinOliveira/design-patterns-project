@@ -3,10 +3,19 @@ package transport;
 /**
  * Box
  */
-public class Box extends Container implements Medication {
+public class Box extends Container {
 
-    public Box() {
-        super();
+    //fields
+    private float price = 0;
+
+    public Box(PriceInterface priceInterface) {
+        super(priceInterface);
+    }
+
+    @Override
+    public float price() {
+        this.price += super.price();
+        return this.price;
     }
 
     @Override
@@ -15,4 +24,9 @@ public class Box extends Container implements Medication {
         super.transport();
     }
     
+    @Override
+    public float applyTaxToPrice(float price) {
+        return priceInterface.applyTaxToPrice(price);
+    }
+
 }
