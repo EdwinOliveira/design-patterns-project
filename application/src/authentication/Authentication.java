@@ -47,7 +47,7 @@ public class Authentication {
      */
     public void checkDriver(String name, String password) {
         for(Driver driver : this.driversHash.values()) {
-            if((driver.getName() == name) && (driver.getPassword() == password)) {
+            if((driver.getName().equals(name)) && (driver.getPassword().equals(password))) {
                 System.out.println("User was found!");
             } else {
                 System.out.println("User was not found!");

@@ -39,7 +39,6 @@ public class Medication extends MedicationComponent{
 
     @Override
     public void applyTax() {
-        // TODO Auto-generated method stub
         double value = this.getPrice();
         taxInterface.applyTaxToValue(value);
     }

@@ -8,7 +8,7 @@ import transport.MedicationComponent;
 /**
  * MedicationComposite
  */
-public abstract class MedicationComposite extends MedicationComponent {
+public class MedicationComposite extends MedicationComponent {
     //MedicationComponent ArrayList
     private ArrayList<MedicationComponent> medicationComponentArrayList = new ArrayList<MedicationComponent>();
 
@@ -60,9 +60,9 @@ public abstract class MedicationComposite extends MedicationComponent {
     public double getPrice() {
         super.getPrice();
         for(MedicationComponent medicationComponent: this.medicationComponentArrayList) {
-            price += medicationComponent.getPrice();
+            this.price += medicationComponent.getPrice();
         }
-        return price;
+        return this.price;
     }
 
     /**
@@ -70,7 +70,6 @@ public abstract class MedicationComposite extends MedicationComponent {
      */
 	@Override
 	public void applyTax() {
-        // TODO Auto-generated method stub
         double value = this.getPrice();
         taxInterface.applyTaxToValue(value);
 	}
