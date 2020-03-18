@@ -1,11 +1,10 @@
 import authentication.Authentication;
-import transport.Bottle;
-import transport.Box;
-import transport.Container;
-import transport.Package;
-import transport.Pill;
-import transport.SpecialPeriods;
-
+import tax.NormalTaxPeriods;
+import tax.SpecialTaxPeriods;
+import transport.composite.Box;
+import transport.composite.MedicationComposite;
+import transport.leafs.Pill;
+import transport.leafs.Vaccine;
 /**
  * main
  */
@@ -31,22 +30,17 @@ public class main {
     }
 
     public static void composite() {
-        //Instantiating the Transport Sets;
-        Container firstContainer = new Box(new SpecialPeriods());
-        Container secondContainer = new Package(new SpecialPeriods());
-        Container thirdContainer = new Pill(new SpecialPeriods());
-        Container forthContainer = new Bottle(new SpecialPeriods());
+        //Instantiating Objects;
+        MedicationComposite container = new Box("Container", new NormalTaxPeriods());
+        Pill pill = new Pill("Pill", 5, new NormalTaxPeriods());
+        Vaccine vaccine = new Vaccine("Vaccine", 2, new SpecialTaxPeriods());
 
-        //Adding some sets to anothers;
-        firstContainer.addMedication(secondContainer);
-        secondContainer.addMedication(thirdContainer);
-        secondContainer.addMedication(forthContainer);
-
-        //Running all levels
-        firstContainer.transport();
-        float price = firstContainer.price();
-
-        float value = firstContainer.applyTaxToPrice(price);
-        System.out.println(value);
+        //Adding elements to Container
+        container.addChildToArrayList(pill);
+        container.addChildToArrayList(vaccine);
+        
+        //Do methods
+        container.getLabel();
+        container.applyTax();
     }
 }
