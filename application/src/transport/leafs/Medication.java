@@ -1,6 +1,4 @@
 package transport.leafs;
-
-import tax.TaxInterface;
 import transport.MedicationComponent;
 
 /**
@@ -16,8 +14,7 @@ public class Medication extends MedicationComponent{
      * @param label
      * @param price
      */
-    public Medication(String label, double price, TaxInterface taxInterface) {
-        super(taxInterface);
+    public Medication(String label, double price) {
         this.label = label;
         this.price = price;
     }
@@ -35,11 +32,5 @@ public class Medication extends MedicationComponent{
     public double getPrice() {
         super.getPrice();
         return price;
-    }
-
-    @Override
-    public void applyTax() {
-        double value = this.getPrice();
-        taxInterface.applyTaxToValue(value);
     }
 }

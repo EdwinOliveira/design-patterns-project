@@ -1,8 +1,5 @@
 package transport.composite;
-
 import java.util.ArrayList;
-
-import tax.TaxInterface;
 import transport.MedicationComponent;
 
 /**
@@ -16,8 +13,7 @@ public class MedicationComposite extends MedicationComponent {
     private double price;
     private String label;
 
-    public MedicationComposite(String label, TaxInterface taxInterface) {
-        super(taxInterface);
+    public MedicationComposite(String label) {
         this.label = label;
     }
 
@@ -64,14 +60,4 @@ public class MedicationComposite extends MedicationComponent {
         }
         return this.price;
     }
-
-    /**
-     * Will call the applyTax from the Interface, this will calculate the Tax for the Row;
-     */
-	@Override
-	public void applyTax() {
-        double value = this.getPrice();
-        taxInterface.applyTaxToValue(value);
-	}
-
 }

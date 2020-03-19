@@ -1,18 +1,12 @@
 package transport;
 
-import tax.TaxInterface;
-
 /**
  * MedicationComponent
  */
 public abstract class MedicationComponent {
 
-    //fields
-    protected TaxInterface taxInterface;
-
     //constructor
-    public MedicationComponent(TaxInterface taxInterface) {
-        this.taxInterface = taxInterface;
+    public MedicationComponent() {
     }
 
     //methods
@@ -21,7 +15,4 @@ public abstract class MedicationComponent {
     public double getPrice() {
         return 0;
     };
-
-    abstract public void applyTax();
-
 }
