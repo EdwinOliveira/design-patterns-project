@@ -8,52 +8,81 @@ import transport.MedicationComponent;
  * ObjectPool
  */
 public class ObjectPool {
-    //Instantiating ObjectPool;
-    private static ObjectPool objectPoolInstance = null;
-    
-    //ArrayList to Store Objects;
-    private ArrayList<MedicationComponent> lock, unlock = new ArrayList<MedicationComponent>();;
 
-    //ArrayList Sizes;
-    private int size = 10;
+    //ObjectPool Instance
+    private static ObjectPool objectPoolInstance = null;
+
+    //Lock/Unlock MedicationComponents ArrayList;
+    private ArrayList<MedicationComponent> lockMedicationComponents, unlockMedicationComponents; 
+
+    //Fields
+    int size;
 
     //Constructor;
     private ObjectPool() {
-    };
+        //Create new Arraylists;
+        this.lockMedicationComponents = new ArrayList<MedicationComponent>();
+        this.unlockMedicationComponents = new ArrayList<MedicationComponent>();
 
-    //Methods;
+        //Size of the ArrayLists;
+        this.size = 10;
+    }
+
+    //Getting ObjectPool instance;
     public static ObjectPool getObjectPool() {
         if(objectPoolInstance == null)
             objectPoolInstance = new ObjectPool();
 
         return objectPoolInstance;
     }
+    
+    //Acquire a new slot to connect;
+    public synchronized MedicationComponent acquireConnection(MedicationComponent medicationComponent) {
+        if(this.lockMedicationComponents.size() >= size)
+            return null;
 
-    public synchronized MedicationComponent acquireConnection() {
-        if(this.lock.size() > size)
-            throw new Error("Locked ArrayList is full!");
-        
-        MedicationComponent newObject;
+        if(this.unlockMedicationComponents.isEmpty() == true){ 
+            this.lockMedicationComponents.add(medicationComponent);         
+            //Index of object;
+            int medicationComponentIndex = this.lockMedicationComponents.indexOf(medicationComponent);
 
-        if(this.unlock.isEmpty() == true) {
-            //No connections available;
-            throw new Error("Unlocked ArrayList is empty!");
+            return this.lockMedicationComponents.get(medicationComponentIndex);
         } else {
-            newObject = this.unlock.get(0);
-            this.unlock.remove(newObject);
+            if(medicationComponent.getLabel().equalsIgnoreCase("Container") || medicationComponent.getLabel().equalsIgnoreCase("Box")) {
+                //Reusing Object;
+                MedicationComponent medicationComponentTemp;
+    
+                //Getting and removing from the unlocked ArrayList;
+                medicationComponentTemp = this.unlockMedicationComponents.get(0);
+                this.unlockMedicationComponents.remove(medicationComponentTemp);
+    
+                //Adding to the locked ArrayList;
+                this.lockMedicationComponents.add(medicationComponentTemp);
+    
+                return medicationComponentTemp;
+            };    
+        }
+        
+        this.lockMedicationComponents.add(medicationComponent);         
+        
+        //Index of object;
+        int medicationComponentIndex = this.lockMedicationComponents.indexOf(medicationComponent);
+
+        return this.lockMedicationComponents.get(medicationComponentIndex);
+    }
+
+    //Release the slot of the connection;
+    public synchronized void relaseConnection(MedicationComponent medicationComponent) {
+        if(this.lockMedicationComponents.contains(medicationComponent) == false)
+            return;
+
+        //Removing the medicationComponent from the LockedComponents;
+        this.lockMedicationComponents.remove(medicationComponent);
+
+        if(medicationComponent.getLabel().equalsIgnoreCase("Container") || medicationComponent.getLabel().equalsIgnoreCase("Box")) { 
+            this.unlockMedicationComponents.add(medicationComponent);
         }
 
-        this.lock.add(newObject);
-
-        return newObject;
-    } 
-
-    public synchronized void releaseConnection(MedicationComponent object) {
-        if(this.lock.contains(object) != true)
-            throw new Error("Object not found in the ArrayList");
-        
-        this.lock.remove(object);
-        this.unlock.add(object);
-    } 
-
+        return;
+    }
 }

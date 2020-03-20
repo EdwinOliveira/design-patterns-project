@@ -41,12 +41,13 @@ public class MedicationComposite extends MedicationComponent {
 
     //This will give out the labels for a composite;
     @Override
-    public void getLabel() {
+    public String getLabel() {
         super.getLabel();
         System.out.println(this.label);
         for(MedicationComponent medicationComponent: this.componentList) {
             medicationComponent.getLabel();
         }
+        return label;
     }
 
     /**
