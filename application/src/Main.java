@@ -44,8 +44,8 @@ public class main {
         MedicationComponent vaccine = medicationFactory.storeMedicationComponent("Vaccine", 2.2);
         
         //Adding elements to box;
-        ((MedicationComposite) medicationComposite).addChildToArrayList(pill);
-        ((MedicationComposite) medicationComposite).addChildToArrayList(vaccine);
+        ((MedicationComposite) medicationComposite).addComponent(pill);
+        ((MedicationComposite) medicationComposite).addComponent(vaccine);
 
         //Apply NormalTax;
         Tax normalTax = new NormalTaxPeriods(medicationComposite);
