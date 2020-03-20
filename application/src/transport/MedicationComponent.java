@@ -13,6 +13,6 @@ public abstract class MedicationComponent {
     public void getLabel() {};
 
     public double getPrice() {
-        return 0;
+        return 0.0d;
     };
 }
