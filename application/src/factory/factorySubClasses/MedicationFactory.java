@@ -11,7 +11,7 @@ import reutilization.ObjectPool;
 public class MedicationFactory implements MedicationComponentFactory {
     
     // Field
-    ObjectPool objectPool = ObjectPool.getObjectPool();
+    private ObjectPool objectPool = ObjectPool.getObjectPool();
 
     @Override
     public MedicationComponent storeMedicationComponent(String label, Double price) {

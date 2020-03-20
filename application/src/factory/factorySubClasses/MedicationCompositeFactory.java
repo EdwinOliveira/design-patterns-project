@@ -10,7 +10,7 @@ import factory.MedicationComponentFactory;
 public class MedicationCompositeFactory implements MedicationComponentFactory {
 
     // Field
-    ObjectPool objectPool = ObjectPool.getObjectPool();
+    private ObjectPool objectPool = ObjectPool.getObjectPool();
 
     @Override
     public MedicationComponent storeMedicationComponent(String label) {
