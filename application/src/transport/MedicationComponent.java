@@ -10,7 +10,9 @@ public abstract class MedicationComponent {
     }
 
     //methods
-    public void getLabel() {};
+    public String getLabel() {
+        return "";
+    };
 
     public double getPrice() {
         return 0;
