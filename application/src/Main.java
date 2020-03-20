@@ -1,4 +1,8 @@
 import authentication.Authentication;
+import factory.MedicationComponentFactory;
+import factory.factorySubClasses.MedicationCompositeFactory;
+import factory.factorySubClasses.MedicationFactory;
+import transport.MedicationComponent;
 import transport.composite.MedicationComposite;
 import transport.leafs.Medication;
 import transportTax.NormalTaxPeriods;
@@ -28,17 +32,23 @@ public class main {
     }
 
     public static void composite() {
-        //Instantiating Objects;
-        MedicationComposite box = new MedicationComposite("Box");
-        Medication pill = new Medication("Pill", 5);
-        Medication vaccine = new Medication("Vaccine", 2);
+        //Instantiating Factory;
+        MedicationComponentFactory medicationCompositeFactory = new MedicationCompositeFactory();
+        MedicationComponentFactory medicationFactory = new MedicationFactory();
+        
+        //Instantiating Composite;
+        MedicationComponent medicationComposite = medicationCompositeFactory.storeMedicationComponent("Box");
+
+        //Instantiating Medication;
+        MedicationComponent pill = medicationFactory.storeMedicationComponent("Pill", 5.2);
+        MedicationComponent vaccine = medicationFactory.storeMedicationComponent("Vaccine", 2.2);
         
         //Adding elements to box;
-        box.addComponent(pill);
-        box.addComponent(vaccine);
+        ((MedicationComposite) medicationComposite).addComponent(pill);
+        ((MedicationComposite) medicationComposite).addComponent(vaccine);
 
         //Apply NormalTax;
-        Tax normalTax = new NormalTaxPeriods(box);
+        Tax normalTax = new NormalTaxPeriods(medicationComposite);
         double value = normalTax.applyTaxToPrice();
 
         //Printing the value;
