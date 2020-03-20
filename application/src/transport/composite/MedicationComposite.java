@@ -7,7 +7,7 @@ import transport.MedicationComponent;
  */
 public class MedicationComposite extends MedicationComponent {
     //MedicationComponent ArrayList
-    private ArrayList<MedicationComponent> medicationComponentArrayList = new ArrayList<MedicationComponent>();
+    private ArrayList<MedicationComponent> componentList = new ArrayList<MedicationComponent>();
 
     //fields
     private double price;
@@ -21,22 +21,22 @@ public class MedicationComposite extends MedicationComponent {
      * This function will add new Medications or MedicationsComposites to the ArrayList;
      * @param medicationComponent
      */
-    public void addChildToArrayList(MedicationComponent medicationComponent) {
-        if(this.medicationComponentArrayList.contains(medicationComponent) == true)
+    public void addComponent(MedicationComponent medicationComponent) {
+        if(this.componentList.contains(medicationComponent) == true)
             return;
         
-        this.medicationComponentArrayList.add(medicationComponent);
+        this.componentList.add(medicationComponent);
     }
 
     /**
      * This function will remove Medications or MedicationComposites from the ArrayList;
      * @param medicationComponent
      */
-    public void removeChildFromArraylist(MedicationComponent medicationComponent) {
-        if(this.medicationComponentArrayList.contains(medicationComponent) == false)
+    public void removeComponent(MedicationComponent medicationComponent) {
+        if(this.componentList.contains(medicationComponent) == false)
             return;
         
-        this.medicationComponentArrayList.remove(medicationComponent);
+        this.componentList.remove(medicationComponent);
     }
 
     //This will give out the labels for a composite;
@@ -44,7 +44,7 @@ public class MedicationComposite extends MedicationComponent {
     public void getLabel() {
         super.getLabel();
         System.out.println(this.label);
-        for(MedicationComponent medicationComponent: this.medicationComponentArrayList) {
+        for(MedicationComponent medicationComponent: this.componentList) {
             medicationComponent.getLabel();
         }
     }
@@ -55,7 +55,7 @@ public class MedicationComposite extends MedicationComponent {
     @Override
     public double getPrice() {
         super.getPrice();
-        for(MedicationComponent medicationComponent: this.medicationComponentArrayList) {
+        for(MedicationComponent medicationComponent: this.componentList) {
             this.price += medicationComponent.getPrice();
         }
         return this.price;
