@@ -34,8 +34,8 @@ public class main {
         Medication vaccine = new Medication("Vaccine", 2);
         
         //Adding elements to box;
-        box.addChildToArrayList(pill);
-        box.addChildToArrayList(vaccine);
+        box.addComponent(pill);
+        box.addComponent(vaccine);
 
         //Apply NormalTax;
         Tax normalTax = new NormalTaxPeriods(box);
