@@ -76,13 +76,11 @@ public class ObjectPool {
         if(this.lockMedicationComponents.contains(medicationComponent) == false)
             return;
 
-        //Removing the medicationComponent from the LockedComponents;
-        this.lockMedicationComponents.remove(medicationComponent);
-
         if(medicationComponent.getLabel().equalsIgnoreCase("Container") || medicationComponent.getLabel().equalsIgnoreCase("Box")) { 
             this.unlockMedicationComponents.add(medicationComponent);
         }
 
-        return;
+        //Removing the medicationComponent from the LockedComponents;
+        this.lockMedicationComponents.remove(medicationComponent);
     }
 }

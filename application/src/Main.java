@@ -4,14 +4,13 @@ import factory.factorySubClasses.MedicationCompositeFactory;
 import factory.factorySubClasses.MedicationFactory;
 import transport.MedicationComponent;
 import transport.composite.MedicationComposite;
-import transport.leafs.Medication;
 import transportTax.NormalTaxPeriods;
 import transportTax.Tax;
 
 /**
  * main
  */
-public class main {
+public class Main {
 
     public static void main(String[] args) {
         singleton();
@@ -50,6 +49,11 @@ public class main {
         //Apply NormalTax;
         Tax normalTax = new NormalTaxPeriods(medicationComposite);
         double value = normalTax.applyTaxToPrice();
+
+        //Removing Components;
+        medicationCompositeFactory.removeMedicationComponent(medicationComposite);
+        medicationFactory.removeMedicationComponent(pill);
+        medicationFactory.removeMedicationComponent(vaccine);
 
         //Printing the value;
         System.out.println(value);

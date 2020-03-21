@@ -37,4 +37,10 @@ public class MedicationFactory implements MedicationComponentFactory {
     public MedicationComponent storeMedicationComponent(String label) {
         return null;
     }
+
+    @Override
+    public void removeMedicationComponent(MedicationComponent medicationComponent) {
+        // TODO Auto-generated method stub
+        this.objectPool.relaseConnection(medicationComponent);
+    }
 }

@@ -25,7 +25,6 @@ public class Medication extends MedicationComponent{
     @Override
     public String getLabel() {
         super.getLabel();
-        System.out.println(label);
         return label;
     }    
 

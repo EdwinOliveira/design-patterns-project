@@ -7,4 +7,5 @@ import transport.MedicationComponent;
 public interface MedicationComponentFactory {
     MedicationComponent storeMedicationComponent(String label, Double price);    
     MedicationComponent storeMedicationComponent(String label);    
+    void removeMedicationComponent(MedicationComponent medicationComponent);
 }
